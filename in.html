@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #070a1f;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  #background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    animation: animateBackground 20s linear infinite;
+  }
+  
+  @keyframes animateBackground {
+    0% { background: url('background1.jpg') center/cover; }
+    50% { background: url('background2.jpg') center/cover; }
+    100% { background: url('background3.jpg') center/cover; }
+  }
+  
+  #clock {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  
+  .animated-text {
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    animation: animateText 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes animateText {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+  }
+
+  #txt{
+    font-style: oblique;
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  #dayCount {
+    font-size: 1.5em;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+    <div id="background"></div>
+    <div id="content">
+        <div class="animated-text">CodzLab</div>
+        <div id="txt">coming soon</div>
+        <div id="clock"></div>
+  <div id="txt">we're working...</div>
+  <div id="dayCount"></div>
+</div>
+
+<script>
+  function updateTime() {
+    const now = new Date();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+    let milliseconds = now.getMilliseconds();
+    let amPm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    milliseconds = milliseconds.toString().padStart(3, '0').slice(0, 2);
+
+    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}:${milliseconds} ${amPm}`;
+  }
+
+  function updateDayCount() {
+    const now = new Date();
+    const startDate = new Date("2024-03-18"); // Set your start date here
+    const daysDifference = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+    
+    document.getElementById('dayCount').textContent = `Day ${daysDifference + 1}`;
+  }
+
+  updateTime();
+  setInterval(updateTime, 1);
+
+  updateDayCount();
+  setInterval(updateDayCount, 1000 * 60 * 60 * 24); // Update every 24 hours
+</script>
+</body>
+</html>
