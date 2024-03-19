@@ -33,7 +33,7 @@ const server = htp.createServer((req, res) => {
 });
 
 server.listen(port, () => {
-    console.log(`Server running at ${port} port (http://localhost:${port}). Develope by Codzlab`);
+    console.log(`Server running at ${port} port (https://codzlab.github.io/:${port}). Develope by Codzlab`);
 });
 
 
